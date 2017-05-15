@@ -1,6 +1,6 @@
-
+ngoproject.com/en/dev/ref/models/fields/
 文档解释:
-        https://docs.djangoproject.com/en/dev/ref/models/fields/
+        https://docs.dja
 
 admin: z8725/yyyyy66666
 
@@ -28,4 +28,6 @@ admin: z8725/yyyyy66666
 
 6.views:
     (1)render渲染继承的模板并返回
+        *.输出表-字段列属性
+            **.每个对应一个url app中配置对应url,对应def传入对应参数，获取-并返回页面。
 

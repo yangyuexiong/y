@@ -4,4 +4,5 @@ from bbs import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^category/(\d+)/$', views.category),
 ]
