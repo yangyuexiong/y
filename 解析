@@ -1,0 +1,31 @@
+
+文档解释:
+        https://docs.djangoproject.com/en/dev/ref/models/fields/
+
+admin: z8725/yyyyy66666
+
+1.models:
+    (1)设计表结构
+
+
+2.templates:
+    (1)放入筛选好的Bootstrap模板,
+    (2)sttings.py配置statucs。
+    (3)修改模板路径(jq,bootstrap),引用自己文件路径。
+
+3.全局URL:
+    (1)配置app下include(的所有子urls)
+    (2)app创建url文件,^$,
+    (3)app/urls配置子url,views
+
+4.views:
+    (1)配置views路径
+    (2)配置views——def
+
+5.templates:
+    (1)创建.文件夹(放入and编写)需要返回的HTML页面文件。
+        (*)编写HTML,使用模板继承,继承需要使用的的模板并加以修改。
+
+6.views:
+    (1)render渲染继承的模板并返回
+

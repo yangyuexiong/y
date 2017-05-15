@@ -1,0 +1,24 @@
+
+
+git clone https://github.com/yangyuexiong/bbs1.git
+
+(*) git pull
+
+(1)git status
+
+(2)git diff
+
+(3)git add .
+
+(4)git commit -m "text"
+
+(5)初次:git push -u origin master
+
+       git push origin master
+
+
+
+
+
+
+
