@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/statics/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "statics"),
-    #os.path.join(BASE_DIR, "uploads"),
+    os.path.join(BASE_DIR, "tupian"),
     #'/var/www/static/',
     #'/var/www/static2/',
 ]

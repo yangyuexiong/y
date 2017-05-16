@@ -4,26 +4,30 @@
     padding-left: 150px;
     padding-right: 150px;
 }
-
+/*左-浮动*/
 .wrap-left{
     width: 75%;
     float: left;
+    background-color: red;
 }
-
+/*右-浮动*/
 .wrap-right{
     width: 25%;
     float: left;
     background-color: blueviolet;
 }
-
+/*停止浮动*/
 .clear-both{
     clear: both;
 }
+/*固定底部*/
 .footer{
     margin-top: 50px;
     height: 200px;
     background-color: black;
 }
+
+
 .article-head-img img{
     width: 220px;
     height: 125px;

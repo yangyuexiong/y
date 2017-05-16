@@ -1,1 +1,20 @@
 {% extends 'base.html' %}
+{% load custom %}
+{% block page-container %}
+    <div class="wrap-left">
+        {% for article in article_list %}
+            <div class="article-box">
+                <div class="article-head-img">
+                    <img src="/statics/{{ article.head_img|truncate_url }}">
+                </div>
+            </div>
+            <div class="article-brief">
+                {{ article.title }}
+            </div>
+    {% endfor %}
+    </div>
+    <div class="wrap-right">
+    右边
+    </div>
+    <div class="clear-both"></div>
+{% endblock %}
