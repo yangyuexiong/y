@@ -8,7 +8,7 @@
 .wrap-left{
     width: 75%;
     float: left;
-    background-color: red;
+    /*background-color: red;*/
 }
 /*右-浮动*/
 .wrap-right{
@@ -27,40 +27,52 @@
     background-color: black;
 }
 
-
+/*图片统一大小-高度-宽度*/
 .article-head-img img{
     width: 220px;
     height: 125px;
 
 }
-
+/*内边距*/
 .article-box{
     padding-bottom: 10px;
 }
+
+/*位置*/
 .article-brief{
     margin-left: -15px;
 }
+
+/*文章标题字体*/
 .article-title{
     font-size: 20px;
 
 }
+/*默认颜色*/
 a{
     color: #333;
 }
+
+/*取消点击下划线*/
 a:visited{text-decoration: none}
+
+/*选择中后的颜色*/
 a:hover{
     color: #337ab7;
     text-decoration: none;
 }
+
+
 body{
     color: #333;
     font-family: Arial,"微软雅黑","Microsoft yahei","Hiragino Sans GB","冬青黑体简体中文 w3","Microsoft Yahei","Hiragino Sans GB","冬青黑体简体中文 w3",STXihei,"华文细黑",SimSun,"宋体",Heiti,"黑体",sans-serif;
 }
-
+/*简介样式*/
 .article-brief-text{
-    margin-top: 10px;
+    margin-top: 100px;
     color: #999;
 }
+
 .article-title-bg{
     font-size: 30px;
 }

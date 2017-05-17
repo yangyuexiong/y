@@ -3,18 +3,33 @@
 {% block page-container %}
     <div class="wrap-left">
         {% for article in article_list %}
-            <div class="article-box">
-                <div class="article-head-img">
+            <div class="article-box row">
+                <div class="article-head-img col-md-4">
                     <img src="/statics/{{ article.head_img|truncate_url }}">
                 </div>
+                <div class="article-brief col-md-8">
+                    <a class="article-title" href="#">{{ article.title }}</a>
+                    <div class="article-brief">
+                        <span style="margin: 0 10px">ID:</span>{{ article.author.name }}
+                        <span style="margin: 0 10px">时间:</span>{{ article.pub_date }}
+                        <!--评论数/点赞-->
+                        <span>{% filter_comment article as comments %}</span>
+                        <!--icon-->
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true" style="margin: 0 10px"></span>{{ comments.comment_count }}
+                        <span class="glyphicon glyphicon-thumbs-up" style="margin: 0 10px"></span>{{ comments.thumb_count }}
+                    </div>
+                    <div class="article-brief-text">
+                        {{ article.brief }}
+                    </div>
+                </div>
             </div>
-            <div class="article-brief">
-                {{ article.title }}
-            </div>
-    {% endfor %}
+        {% endfor %}
     </div>
+
     <div class="wrap-right">
     右边
     </div>
-    <div class="clear-both"></div>
+    <div class="clear-both">
+
+    </div>
 {% endblock %}
