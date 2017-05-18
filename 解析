@@ -30,5 +30,6 @@ admin: z8725/yyyyy66666
     (1)render渲染继承的模板并返回
         *.输出表-字段列属性
             **.每个对应一个url app中配置对应url,对应def传入对应参数，获取-并返回页面-加入样式。
+                                            css,ajax,js,{% csrf_token %},?next={{ request.path }}
                 ***.自定义标签/-编写
 

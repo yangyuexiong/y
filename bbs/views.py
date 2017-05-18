@@ -19,7 +19,7 @@ def acc_login(request):
                             password=request.POST.get('password'))
         if user is not None:
             login(request,user)
-            return HttpResponseRedirect('/bbs')
+            return HttpResponseRedirect(request.GET.get('next')or'/bbs')
         else:
             login_err = '账号或密码错误'
             return render(request,'bbs/login.html',{'login_err':login_err})
@@ -27,7 +27,7 @@ def acc_login(request):
 #注销
 def acc_logout(request):
     logout(request)
-    return HttpResponseRedirect('/bbs')
+    return HttpResponseRedirect(request.GET.get('next')or'/bbs')
 
 
 #主页
@@ -54,3 +54,25 @@ def category(request,id):
     return render(request,'bbs/index.html',{'category_list':category_list,
                                             'category_obj':category_obj,
                                             'article_list':article_list,})
+
+#文章内页
+def article_detail(request,article_id):
+    article_obj = models.Article.objects.get(id=article_id)
+
+    return render(request,'bbs/article_detail.html',{'article_obj':article_obj,
+                                                     'category_list': category_list})
+
+
+#评论
+def comment(request):
+    print(request.POST)
+    if request.method == 'POST':
+        new_comment_obj = models.Comment(
+            article_id = request.POST.get('article_id'),
+            parent_comment_id = request.POST.get('parent_comment_id')or None,
+            comment_type = request.POST.get('comment_type'),
+            user_id = request.user.userprofile.id,
+            comment = request.POST.get('comment'),
+        )
+        new_comment_obj.save()
+    return HttpResponse('success')

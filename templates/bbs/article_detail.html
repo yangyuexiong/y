@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load custom %}
+{% block page-container %}
+    <div class="wrap-left">
+        <div class="article-title-bg">
+            {{ article_obj.title }}
+        </div>
+        <div class="article-title-brief">
+            <span>作者：{{ article_obj.author.name }}</span>
+            <span>{{ article_obj.pub_date}}</span>
+            <span>{% filter_comment article_obj as comments %}</span>
+            <span class="glyphicon glyphicon-comment" aria-hidden="true" style="margin: 0 10px"></span>
+            {{ comments.comment_count }}
+            <span class="glyphicon glyphicon-thumbs-up" style="margin: 0 10px"></span>
+            {{ comments.thumb_count }}
+        </div>
+        <div class="article-content">
+            <img src="/statics/{{ article_obj.head_img|truncate_url }}" class="article-detail-head-img">
+            {{ article_obj.content }}
+        </div>
+        <div class="comment-box">
+            {% if request.user.is_authenticated %}
+                <textarea class="form-control" rows="3"></textarea>
+                <button type="button" style="margin-top: 10px " class="btn btn-success pull-right">评论</button>
+            {% else %}
+                <div class="jumbotron">
+                    <h4 class="text-center"><a href="{% url 'login' %}?next={{ request.path }}">登陆</a>后评论</h4>
+                </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="wrap-right">右边</div>
+
+    <div class="clear-both"></div>
+
+{% endblock %}
+
+
+
+
+{% block bottom-js %}
+<script>
+    function getCsrf() {
+        return $("input[name='csrfmiddlewaretoken']").val();
+    }
+
+    $(document).ready(function () {
+        $(".comment-box button").click(function () {
+            var comment_text = $(".comment-box textarea").val();
+            if (comment_text.trim().length < 5){
+                alert('内容不少于5个');
+
+            }else{
+                //post
+                $.post("{% url 'post_comment' %}",
+                    {
+                        'comment_type': 1,
+                        'article_id':"{{ article_obj.id }}",
+                        'parent_comment_id':null,
+                        'comment':comment_text.trim(),
+                        'csrfmiddlewaretoken':getCsrf()
+                    },//end post args
+
+                    function(callback){
+                        console.log(callback);
+                        if (callback == 'success'){
+                            alert('success')
+                        }
+                })//end post
+            }
+        });//end button click
+
+    });
+</script>
+{% endblock %}

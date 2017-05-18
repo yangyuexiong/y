@@ -73,19 +73,23 @@ body{
     color: #999;
 }
 
+/*标题样式*/
 .article-title-bg{
     font-size: 30px;
 }
+/*简介样式*/
 .article-title-brief{
     margin-top: 10px;
     color:#999;
 }
 
+/*图片样式*/
 .article-detail-head-img{
     margin-top: 25px;
     margin-bottom: 20px;
     width: 100%;
 }
+/*内容样式*/
 .article-content{
     line-height: 30px;
 }

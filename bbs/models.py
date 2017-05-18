@@ -73,7 +73,8 @@ class Comment(models.Model):
             raise ValidationError(u'内容不能为空')
 
     def __str__(self):
-        return self.comment
+        # return '%s,P:%s,%s' % (self.article, self.parent_comment.id, self.comment)
+         return self.comment
 
 
 #帖子属于的板块
