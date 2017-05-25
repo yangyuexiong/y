@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from bbs import models
-
+from bbs import comment_hander
 #django内置验证模块
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
@@ -58,7 +58,7 @@ def category(request,id):
 #文章内页
 def article_detail(request,article_id):
     article_obj = models.Article.objects.get(id=article_id)
-
+    comment_tree = comment_hander.build_tree(article_obj.comment_set.select_related())
     return render(request,'bbs/article_detail.html',{'article_obj':article_obj,
                                                      'category_list': category_list})
 
@@ -76,3 +76,6 @@ def comment(request):
         )
         new_comment_obj.save()
     return HttpResponse('success')
+
+def get_comments(request,article_obj_id):
+    article_obj = models.Article.objects.get(id=article_id)
