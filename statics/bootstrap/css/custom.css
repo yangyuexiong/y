@@ -94,6 +94,7 @@ body{
     line-height: 30px;
 }
 
+/*返回的评论样式*/
 .comment-node{
     border: 1px solid darkcyan;
     padding: 5px;
@@ -102,6 +103,8 @@ body{
     border: 1px solid brown;
     padding: 5px;
 }
+
+
 .new-article-notify{
     background-color: brown;
     padding: 10px;
