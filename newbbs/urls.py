@@ -19,6 +19,7 @@ from bbs import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^bbs/', include('bbs.urls')),
+    url(r'^register/',views.register,name='register'),
     url(r'^login/',views.acc_login,name='login'),
     url(r'^logout/',views.acc_logout,name='logout'),
 ]

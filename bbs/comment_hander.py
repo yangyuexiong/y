@@ -39,5 +39,5 @@ def build_tree(comment_set):
 
     print("-")
     for k,v in terr_dic.items():
-        print(k,v)
-    return(terr_dic)
+        # print(k,v)
+        return(terr_dic)

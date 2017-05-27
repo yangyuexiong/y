@@ -4,6 +4,7 @@ from bbs import comment_hander
 import json
 #django内置验证模块
 from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -12,10 +13,24 @@ from django.contrib.auth.decorators import login_required
 #动态-全局-返回同一导航页面
 category_list = models.Category.objects.filter(set_as_top_menu=True).order_by('position_index')
 
+#注册
+def register(request):
+    if request.method == 'POST':
+        user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
+        user.save()
+        profile = models.UserProfile()
+        profile.User = user
+        profile.save()
+        # return HttpResponseRedirect(redirect_to="/bbs")
+        return HttpResponseRedirect(redirect_to='status/注册成功/login')
+    else:
+        return render(request,'bbs/register.html')
+
+
 #登陆验证
 def acc_login(request):
     if request.method == 'POST':
-        print(request.POST)
+        print(request.POST.get('username'))
         user = authenticate(username=request.POST.get('username'),
                             password=request.POST.get('password'))
         if user is not None:
@@ -82,10 +97,16 @@ def comment(request):
         new_comment_obj.save()
     return HttpResponse('success')
 
-#h获取评论
+#获取评论
 def get_comments(request,article_id):
     article_obj = models.Article.objects.get(id=article_id)
     comment_tree = comment_hander.build_tree(article_obj.comment_set.select_related())
     tree_html = comment_hander.render_comment_tree(comment_tree)
     return HttpResponse(tree_html)
 
+#操作结果显示
+def show_status_page(request, msg, url):
+    return render(request, 'bbs/status_page.html', {
+        'msg': msg,
+        'url': url
+    })

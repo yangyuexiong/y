@@ -18,6 +18,18 @@
             <img src="/statics/{{ article_obj.head_img|truncate_url }}" class="article-detail-head-img">
             {{ article_obj.content }}
         </div>
+
+        <div>
+        {% for c in commentList %}
+            {% if c.parent_comment %}
+                <div>{{ c.user.name }}回复<a href="#" style="text-decoration: underline;">@{{ c.parent_comment.user.name }}</a>: {{ c.comment }}</div>
+            {% else %}
+                <div>{{ c.user.name }} 说: {{ c.comment }}</div>
+            {% endif %}
+        {% endfor %}
+        </div>
+
+
         <div class="comment-box">
             {% if request.user.is_authenticated %}
                 <textarea class="form-control" rows="3"></textarea>
@@ -36,17 +48,7 @@
         </div>
     <button type="button" onclick="GetComments()">测试</button>
 
-    <br>
-    <br>
-    <div>
-        {% for c in commentList %}
-            {% if c.parent_comment %}
-                <div>{{ c.user.name }}回复<a href="#" style="text-decoration: underline;">@{{ c.parent_comment.user.name }}</a>: {{ c.comment }}</div>
-            {% else %}
-                <div>{{ c.user.name }} 说: {{ c.comment }}</div>
-            {% endif %}
-        {% endfor %}
-    </div>
+
 
     </div>
 
@@ -73,7 +75,6 @@
 
 
 
-
     function getCsrf() {
         return $("input[name='csrfmiddlewaretoken']").val();
     }
@@ -97,6 +98,7 @@
                         console.log(callback);
                         if (callback == 'success'){
                             alert('success')
+                            window.location.reload()
                         }
                 })//end post
             }
